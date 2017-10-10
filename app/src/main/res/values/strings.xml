@@ -2,4 +2,6 @@
     <string name="app_name">easy</string>
     <string name="user">User :</string>
     <string name="pass">Pass :</string>
+    <string name="sing_in">Sing in</string>
+    <string name="new_register">NEW REGISTER</string>
 </resources>
