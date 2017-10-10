@@ -6,92 +6,93 @@
 
     <!--content-->
     <LinearLayout
-        android:background="#78ffffff"
-        android:padding="16dp"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:background="#78ffffff"
+        android:orientation="vertical"
+        android:padding="16dp">
 
 
         <!--Logo-->
         <ImageView
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo"
             android:layout_width="@dimen/logo"
-            android:layout_height="@dimen/logo" />
+            android:layout_height="@dimen/logo"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo" />
 
         <!--App NAME-->
         <TextView
-            android:layout_marginTop="1dp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="@dimen/h1"
-            android:text="@string/app_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="1dp"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/h1"
+            android:textStyle="bold" />
 
         <!--User-->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <!--Icon-->
             <ImageView
-                android:src="@mipmap/icon_user"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_user" />
             <!--User-->
             <EditText
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/colorPrimaryLigth"
-                android:inputType="text"
-                android:hint="@string/user"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="@string/user"
+                android:inputType="text"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryLigth" />
         </LinearLayout>
         <!--Password-->
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <!--Iconpass-->
             <ImageView
 
-                android:src="@mipmap/ic_pass"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_pass" />
 
             <!--pass-->
             <EditText
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/colorPrimaryLigth"
-                android:inputType="textPassword"
-                android:hint="@string/pass"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:hint="@string/pass"
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryLigth" />
 
         </LinearLayout>
 
         <!--button-->
         <Button
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimaryLigth"
             android:text="@string/sing_in"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/white" />
         <!--New Register-->
         <TextView
-            android:textColor="@color/colorAccent"
-            android:textStyle="italic"
-            android:textSize="@dimen/h2"
+            android:id="@+id/txtRegister"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/new_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/h2"
+            android:textStyle="italic" />
 
 
     </LinearLayout>
