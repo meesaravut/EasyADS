@@ -36,7 +36,6 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <!--Icon-->
             <ImageView
                 android:src="@mipmap/icon_user"
@@ -50,10 +49,31 @@
                 android:hint="@string/user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-
         </LinearLayout>
         <!--Password-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Iconpass-->
+            <ImageView
+
+                android:src="@mipmap/ic_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--pass-->
+            <EditText
+                android:textColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorPrimaryLigth"
+                android:inputType="textPassword"
+                android:hint="@string/pass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
         <!--button-->
         <!--New Register-->
 
