@@ -22,10 +22,10 @@ public class MyAlert {
     public void myDialog(String strTile,String strmassage) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.Bell);
+        builder.setIcon(R.drawable.bell);
         builder.setTitle(strTile);
         builder.setMessage(strmassage);
-        builder.setPositiveButton("ตกลงนะจ๊ะ", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("ปิดสิคะ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

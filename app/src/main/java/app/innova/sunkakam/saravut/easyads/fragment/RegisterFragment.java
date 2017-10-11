@@ -1,9 +1,17 @@
 package app.innova.sunkakam.saravut.easyads.fragment;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +20,7 @@ import android.widget.ImageView;
 
 import app.innova.sunkakam.saravut.easyads.MainActivity;
 import app.innova.sunkakam.saravut.easyads.R;
+import app.innova.sunkakam.saravut.easyads.utility.MyAlert;
 
 /**
  * Created by Mee R&D on 10/10/2560.
@@ -21,6 +30,11 @@ public class RegisterFragment extends Fragment {
 
     //Explict
     private String nameString, userString, passString;
+    private Uri uri;
+    private ImageView imageView;
+    private boolean aBoolean = true;
+    private String tag = "11octV1";
+
 
     @Nullable
     @Override
@@ -37,9 +51,63 @@ public class RegisterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-//        Toolbar_controller
+        // Toolbar_controller
+
         toolbar_controller();
 
+        //Humen controller
+
+        humenController();
+
+
+    }//main method
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (resultCode == getActivity().RESULT_OK) {
+
+
+
+
+            Log.d(tag, "Result OK");
+
+            aBoolean = false;
+
+            try {
+                uri = data.getData();
+                Bitmap bitmap = BitmapFactory
+                        .decodeStream(getActivity().getContentResolver().openInputStream(uri));
+                imageView.setImageBitmap(bitmap);
+
+            } catch (Exception e) {
+
+
+                Log.d(tag, "e ==> " + e.toString());
+
+            }
+
+        }//if
+
+
+    }//onactivity
+
+    private void humenController() {
+        imageView = getView().findViewById(R.id.imvavanger);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "เลือกแอป"), 8);
+
+
+            }//onclick
+        });
 
     }
 
@@ -54,8 +122,7 @@ public class RegisterFragment extends Fragment {
 
         //Back controller
         ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((MainActivity) getActivity()).getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true
-        );
+        ((MainActivity) getActivity()).getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -77,12 +144,57 @@ public class RegisterFragment extends Fragment {
                 EditText passEditText = getView().findViewById(R.id.edtPassword);
                 EditText userEditText = getView().findViewById(R.id.edtuser);
 
+                //change Data type
 
-            }//onclcak
+
+                nameString = nameEditext.getText().toString().trim();
+                userString = userEditText.getText().toString().trim();
+                passString = passEditText.getText().toString().trim();
+
+
+                //check Space
+                if (nameString.equals("") || userString.equals("") || passString.equals("")) {
+
+                    MyAlert myAlert = new MyAlert(getActivity());
+                    myAlert.myDialog("ข้อมูลของท่านไม่สมบูรณ์", "กรุณาตรวจสอบข้อมูลนะคะ");
+
+
+                } else if (aBoolean) {
+                    MyAlert myAlert = new MyAlert(getActivity());
+                    myAlert.myDialog("no Image", "ใส่รูปสิบักหำ");
+                } else {
+
+                    upLoadValueToSaver();
+                }
+
+
+            }//onclick
         });
 
 
     }
+
+    private void upLoadValueToSaver() {
+
+        //Finf Path Of Image
+        String strPathImage = "";
+
+        String[] strings = new String[]{MediaStore.Images.Media.DATA};
+
+        Cursor cursor = getActivity().getContentResolver().query(uri, strings, null, null, null);
+        if (cursor != null) {
+
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            strPathImage = cursor.getString(index);
+        } else {
+            strPathImage = uri.getPath();
+        }
+
+
+        Log.d(tag, "PATH OF IMAGE ==>"+ strPathImage);
+
+    }//UPload
 
 
 } // Main Class
