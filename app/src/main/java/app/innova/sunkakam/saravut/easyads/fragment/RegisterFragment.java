@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import app.innova.sunkakam.saravut.easyads.MainActivity;
 import app.innova.sunkakam.saravut.easyads.R;
@@ -16,6 +18,9 @@ import app.innova.sunkakam.saravut.easyads.R;
  */
 
 public class RegisterFragment extends Fragment {
+
+    //Explict
+    private String nameString, userString, passString;
 
     @Nullable
     @Override
@@ -42,14 +47,14 @@ public class RegisterFragment extends Fragment {
 
         //config Toolbat
         Toolbar toolbar = getView().findViewById(R.id.toolbarRegister);
-        ((MainActivity)getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).setSupportActionBar(toolbar);
 
 
-        ((MainActivity)getActivity()).setTitle(getResources().getString(R.string.new_register));
+        ((MainActivity) getActivity()).setTitle(getResources().getString(R.string.new_register));
 
-    //Back controller
-        ((MainActivity)getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((MainActivity)getActivity()).getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true
+        //Back controller
+        ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
+        ((MainActivity) getActivity()).getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true
         );
 
 
@@ -61,10 +66,23 @@ public class RegisterFragment extends Fragment {
 
             }
         });
+        //saveController
+        ImageView imageView = getView().findViewById(R.id.imvSave);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //get Value From EditText
+                EditText nameEditext = getView().findViewById(R.id.edtName);
+                EditText passEditText = getView().findViewById(R.id.edtPassword);
+                EditText userEditText = getView().findViewById(R.id.edtuser);
+
+
+            }//onclcak
+        });
 
 
     }
-
 
 
 } // Main Class
