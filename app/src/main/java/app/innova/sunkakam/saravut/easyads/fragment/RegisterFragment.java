@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,9 +19,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import org.jibble.simpleftp.SimpleFTP;
+
+import java.io.File;
+
 import app.innova.sunkakam.saravut.easyads.MainActivity;
 import app.innova.sunkakam.saravut.easyads.R;
 import app.innova.sunkakam.saravut.easyads.utility.MyAlert;
+import app.innova.sunkakam.saravut.easyads.utility.Myconstant;
 
 /**
  * Created by Mee R&D on 10/10/2560.
@@ -193,6 +199,34 @@ public class RegisterFragment extends Fragment {
 
 
         Log.d(tag, "PATH OF IMAGE ==>"+ strPathImage);
+
+        //Uploadfiletosaver
+
+        try {
+
+
+//            conected potocal FTP
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy
+                    .Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            SimpleFTP simpleFTP = new SimpleFTP();
+            Myconstant myconstant = new Myconstant();
+            simpleFTP.connect(
+                    myconstant.getHostSting(),
+                    myconstant.getPortAnInt(),
+                    myconstant.getUserString(),
+                    myconstant.getPasswordString()
+            );
+            simpleFTP.bin();
+            simpleFTP.cwd("ImageMeeRD");
+            simpleFTP.stor(new File(strPathImage));
+            simpleFTP.disconnect();
+
+        } catch (Exception e) {
+            Log.d(tag, "e upload ==>" + e.toString());
+        }
 
     }//UPload
 
