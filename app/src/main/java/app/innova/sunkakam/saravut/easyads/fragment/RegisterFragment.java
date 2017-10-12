@@ -223,6 +223,7 @@ public class RegisterFragment extends Fragment {
             simpleFTP.cwd("ImageMeeRD");
             simpleFTP.stor(new File(strPathImage));
             simpleFTP.disconnect();
+            //UpdateonmySQL
 
         } catch (Exception e) {
             Log.d(tag, "e upload ==>" + e.toString());

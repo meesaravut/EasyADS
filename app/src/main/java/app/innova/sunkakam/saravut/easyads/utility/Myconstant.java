@@ -7,10 +7,15 @@ package app.innova.sunkakam.saravut.easyads.utility;
 public class Myconstant {
 
 
-    private String hostSting = "ftp.swiftcodingthai.com";
-    private String userString = "ino@swiftcodingthai.com";
-    private String passwordString = "Abc12345";
+    private String hostSting ="ftp.swiftcodingthai.com";
+    private String userString ="ino@swiftcodingthai.com";
+    private String passwordString ="Abc12345";
     private int portAnInt = 21;
+    private String urlPostUser = "";
+
+    public String getUrlPostUser() {
+        return urlPostUser;
+    }
 
     public String getHostSting() {
         return hostSting;
