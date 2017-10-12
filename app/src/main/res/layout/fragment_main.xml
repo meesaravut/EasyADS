@@ -44,6 +44,7 @@
                 android:src="@mipmap/icon_user" />
             <!--User-->
             <EditText
+                android:id="@+id/ediUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/user"
@@ -66,6 +67,7 @@
 
             <!--pass-->
             <EditText
+                android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="@string/pass"
@@ -77,6 +79,7 @@
 
         <!--button-->
         <Button
+            android:id="@+id/edtButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryLigth"
