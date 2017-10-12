@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.text.LocaleDisplayNames;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -12,12 +13,14 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.jibble.simpleftp.SimpleFTP;
 
@@ -27,6 +30,7 @@ import app.innova.sunkakam.saravut.easyads.MainActivity;
 import app.innova.sunkakam.saravut.easyads.R;
 import app.innova.sunkakam.saravut.easyads.utility.MyAlert;
 import app.innova.sunkakam.saravut.easyads.utility.Myconstant;
+import app.innova.sunkakam.saravut.easyads.utility.UploadValueToSaver;
 
 /**
  * Created by Mee R&D on 10/10/2560.
@@ -223,13 +227,42 @@ public class RegisterFragment extends Fragment {
             simpleFTP.cwd("ImageMeeRD");
             simpleFTP.stor(new File(strPathImage));
             simpleFTP.disconnect();
+
+
             //UpdateonmySQL
+
+            Log.d(tag, "name==>" + nameString);
+            Log.d(tag, "user==>"+ userString);
+            Log.d(tag, "password==>" + passString);
+            Log.d(tag, "image==>" + findNameImage(strPathImage));
+
+            UploadValueToSaver uploadValueToSaver = new UploadValueToSaver(getActivity());
+            uploadValueToSaver.execute(nameString,userString,passString,
+                    findNameImage(strPathImage),myconstant.getUserString());
+
+            if (Boolean.parseBoolean(uploadValueToSaver.get())) {
+              getActivity().getSupportFragmentManager().popBackStack();
+            }else
+                Toast.makeText(getActivity(),"Error Cannot Upload",Toast.LENGTH_SHORT).show();
+
 
         } catch (Exception e) {
             Log.d(tag, "e upload ==>" + e.toString());
         }
 
     }//UPload
+
+    private String findNameImage(String strPathImage) {
+
+        String result = null;
+
+        result = strPathImage.substring(strPathImage.lastIndexOf("/"));
+        result = "http://swiftcodingthai.com/ino/ImageMaster" + result;
+
+
+        return result ;
+
+    }
 
 
 } // Main Class
